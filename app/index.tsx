@@ -17,21 +17,24 @@ import { useState } from "react";
 
 export default function Index() {
   const [task, setTask] = useState<string>("");
-  const [taskItems, setTaskItems] = useState<string[]>([]);
+  const [taskItems, setTaskItems] = useState<
+    { text: string; completed: boolean }[]
+  >([]);
 
   const handleAddTask = () => {
     // Ensure task is not empty
     if (task.trim()) {
       Keyboard.dismiss();
-      setTaskItems([...taskItems, task]);
+
+      setTaskItems([...taskItems, { text: task, completed: false }]);
       setTask("");
     }
   };
 
   const completeTask = (index: number) => {
-    let itemsCopy = [...taskItems];
-    itemsCopy.splice(index, 1);
-    setTaskItems(itemsCopy);
+    const newTaskItems = [...taskItems];
+    newTaskItems[index].completed = !newTaskItems[index].completed;
+    setTaskItems(newTaskItems);
   };
 
   return (
@@ -55,7 +58,7 @@ export default function Index() {
                     key={index}
                     onPress={() => completeTask(index)}
                   >
-                    <Task text={item} />
+                    <Task text={item.text} completed={item.completed} />
                   </TouchableOpacity>
                 );
               })}
