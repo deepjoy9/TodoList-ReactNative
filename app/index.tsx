@@ -1,4 +1,5 @@
 import {
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
@@ -11,8 +12,21 @@ import {
   GestureHandlerRootView,
   TextInput,
 } from "react-native-gesture-handler";
+import { useState } from "react";
 
 export default function Index() {
+  const [task, setTask] = useState<string>("");
+  const [taskItems, setTaskItems] = useState<string[]>([]);
+
+  const handleAddTask = () => {
+    if (task.trim()) {
+      // Ensure task is not empty
+      Keyboard.dismiss();
+      setTaskItems([...taskItems, task]);
+      setTask("");
+    }
+  };
+
   return (
     <GestureHandlerRootView>
       <View style={styles.container}>
@@ -21,12 +35,13 @@ export default function Index() {
           <Text style={styles.sectionTitle}>Today's tasks</Text>
           <View style={styles.items}>
             {/* All tasks */}
-            <Task text={"Task 1"} />
-            <Task text={"Task 2"} />
+            {taskItems.map((item, index) => {
+              return <Task key={index} text={item} />;
+            })}
           </View>
         </View>
 
-        {/* Write a task */}
+        {/* Write a task section */}
         {/* Uses a keyboard avoiding view which ensures the keyboard does not cover the items on screen */}
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -36,9 +51,11 @@ export default function Index() {
             style={styles.input}
             placeholder={"Write a task"}
             placeholderTextColor="#888"
+            value={task}
+            onChangeText={(text) => setTask(text)}
           />
           <TextInput />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => handleAddTask()}>
             <View style={styles.addWrapper}>
               <Text>+</Text>
             </View>
