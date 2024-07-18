@@ -1,6 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 
-const Task = ({ text }) => {
+type TaskProps = {
+  text: string;
+};
+
+const Task = ({ text }: TaskProps) => {
   return (
     <View style={styles.item}>
       <View style={styles.itemLeft}>
