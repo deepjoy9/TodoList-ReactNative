@@ -1,50 +1,20 @@
-# Welcome to your Expo app 👋
+# TodoList App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A simple to-do list application built with React Native, providing functionalities to add, toggle, and manage tasks. This application allows users to mark tasks as completed by striking through the text.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Add Tasks**: Users can add new tasks to the list.
+- **Toggle Task Completion**: Clicking on a task toggles its completion status, striking through the text to indicate completion.
+- **Responsive Design**: The application is designed to be responsive and user-friendly on both iOS and Android devices.
 
-   ```bash
-   npm install
-   ```
+## Technologies Used
 
-2. Start the app
+- **React Native**: Framework for building native applications using React.
+- **React Native Gesture Handler**: For handling gestures and touch interactions.
+- **TypeScript**: Provides type safety for the application.
 
-   ```bash
-    npx expo start
-   ```
+## App Screenshots
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+![App Task List](https://res.cloudinary.com/dfzzmqoho/image/upload/v1721332564/My-Project-Images/Todolist-app-reactnative-tasklist-image_vkajfd.png)
+![App Task List Completed](https://res.cloudinary.com/dfzzmqoho/image/upload/v1721332564/My-Project-Images/Todolist-app-reactnative-tasklist-completed-image_dtkp03.png)
