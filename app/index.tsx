@@ -10,6 +10,7 @@ import {
 import Task from "../components/Task";
 import {
   GestureHandlerRootView,
+  ScrollView,
   TextInput,
 } from "react-native-gesture-handler";
 import { useState } from "react";
@@ -19,27 +20,48 @@ export default function Index() {
   const [taskItems, setTaskItems] = useState<string[]>([]);
 
   const handleAddTask = () => {
+    // Ensure task is not empty
     if (task.trim()) {
-      // Ensure task is not empty
       Keyboard.dismiss();
       setTaskItems([...taskItems, task]);
       setTask("");
     }
   };
 
+  const completeTask = (index: number) => {
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index, 1);
+    setTaskItems(itemsCopy);
+  };
+
   return (
     <GestureHandlerRootView>
       <View style={styles.container}>
-        {/* Today's Tasks */}
-        <View style={styles.tasksWrapper}>
-          <Text style={styles.sectionTitle}>Today's tasks</Text>
-          <View style={styles.items}>
-            {/* All tasks */}
-            {taskItems.map((item, index) => {
-              return <Task key={index} text={item} />;
-            })}
+        {/* Added this scroll view to enable scrolling when list gets longer than the page */}
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+          }}
+          keyboardShouldPersistTaps="handled"
+        >
+          {/* Today's Tasks */}
+          <View style={styles.tasksWrapper}>
+            <Text style={styles.sectionTitle}>Today's tasks</Text>
+            <View style={styles.items}>
+              {/* All tasks */}
+              {taskItems.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => completeTask(index)}
+                  >
+                    <Task text={item} />
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
           </View>
-        </View>
+        </ScrollView>
 
         {/* Write a task section */}
         {/* Uses a keyboard avoiding view which ensures the keyboard does not cover the items on screen */}
